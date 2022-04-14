@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <!-- <script src="script.js">  </script> -->
 
 </head>
 
@@ -23,17 +24,17 @@
                 <img src="images/tw.png">
                 <img src="images/gp.png">
             </div>
-            <form id="login" class="input-group">
+            <form id="login" class="input-group" onsubmit="getLoginInfo()">
                 <input type="text" class="input-field" placeholder="User Id" required>
                 <input type="text" class="input-field" placeholder="Enter password" required>
                 <input type="checkbox" class="check-box"><span>Remember Password</span>
                 <button type="submit" class="submit-btn">Log in</button>
             </form>
-            <form id="signup" class="input-group">
-                <input type="text" class="input-field" placeholder="User Name" required>
-                <input type="email" class="input-field" placeholder="Email Id" required>
-                <input type="number" class="input-field" placeholder="Phone no" required>
-                <input type="text" class="input-field" placeholder="Enter password" required>
+            <form id="signup" class="input-group" onsubmit="getSignUpInfo(event)">
+                <input id="signupUserName" type="text" class="input-field" placeholder="User Name" required>
+                <input id="signupEmail" type="email" class="input-field" placeholder="Email Id" required>
+                <input id="signupUserPhNo" type="number" class="input-field" placeholder="Phone no" required>
+                <input id="signupPassword" type="text" class="input-field" placeholder="Enter password" required>
                 <input type="checkbox" class="check-box"><span>I Agree to terms & conditions</span>
                 <button type="submit" class="submit-btn">Sign Up</button>
             </form>
@@ -41,6 +42,9 @@
     </div>
 
     <script src="script.js">  </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </body>
 
 </html>
