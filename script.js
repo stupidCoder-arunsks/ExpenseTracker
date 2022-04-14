@@ -1,41 +1,81 @@
+function getLogInInfo(e) {
+
+    console.log("In frontend login method >>> ");
+
+    e.preventDefault();
+
+    const userEmail = document.getElementById('LogInEmail').value;
+    const userPass = document.getElementById('LogInPassword').value;
+
+    console.log('LogIn details', userEmail, userPass);
+
+    // try {
+    //     const res = await axios.post("http://localhost:3000/login", {
+    //         "name": userName,
+    //         "email": userEmail,
+    //         "phoneno": userPhNo,
+    //         "password": userPassword
+    //     });
+
+    //     console.log('res from backend ', res);
+    //     console.log('res from backend ', res.status);
+
+    //     if (res.status === 200) {
+    //         alert("user created successfulyy");
+    //     }
+    //     // else if (res.status === 400) {
+    //     //     alert("Invalid credentials!");
+    //     // } else {
+    //     //     console.log(res);
+    //     // }
+
+    // }
+    // catch (e) {
+    //     // alert(`${resMessage}`);
+    //     alert("User already exists")
+    // }
+
+
+}
+
 
 async function getSignUpInfo(e) {
 
     console.log("getting frontend signup >>> ");
 
     e.preventDefault();
-    const userName = document.getElementById('signupUserName').value;
-    const userEmail = document.getElementById('signupEmail').value;
-    const userPhNo = document.getElementById('signupUserPhNo').value;
-    const userPassword = document.getElementById('signupPassword').value;
+    // const userName = document.getElementById('signupUserName').value;
+    // const userEmail = document.getElementById('signupEmail').value;
+    // const userPhNo = document.getElementById('signupUserPhNo').value;
+    // const userPassword = document.getElementById('signupPassword').value;
 
-    console.log('signup details', userName, userEmail, userPhNo, userPassword);
+    // console.log('signup details', userName, userEmail, userPhNo, userPassword);
 
-    try {
-        const res = await axios.post("http://localhost:3000/signup", {
-            "name": userName,
-            "email": userEmail,
-            "phoneno": userPhNo,
-            "password": userPassword
-        });
+    // try {
+    //     const res = await axios.post("http://localhost:3000/signup", {
+    //         "name": userName,
+    //         "email": userEmail,
+    //         "phoneno": userPhNo,
+    //         "password": userPassword
+    //     });
 
-        console.log('res from backend ', res);
-        console.log('res from backend ', res.status);
+    //     console.log('res from backend ', res);
+    //     console.log('res from backend ', res.status);
 
-        if (res.status === 200) {
-            alert("user created successfulyy");
-        }
-        // else if (res.status === 400) {
-        //     alert("Invalid credentials!");
-        // } else {
-        //     console.log(res);
-        // }
+    //     if (res.status === 200) {
+    //         alert("user created successfulyy");
+    //     }
+    // else if (res.status === 400) {
+    //     alert("Invalid credentials!");
+    // } else {
+    //     console.log(res);
+    // }
 
-    }
-    catch (e) {
-        // alert(`${resMessage}`);
-        alert("User already exists")
-    }
+    // }
+    // catch (e) {
+    //     // alert(`${resMessage}`);
+    //     alert("User already exists")
+    // }
 
 
 }
