@@ -110,8 +110,6 @@ async function getExpenseDetails(event) {
 
 }
 
-
-
 var x = document.getElementById("login");
 var y = document.getElementById("signup");
 var z = document.getElementById("btn");

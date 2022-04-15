@@ -2,13 +2,15 @@
 const express = require('express');
 const app = express();
 var cors = require('cors')
-const routes = require("./routes/routes");
-const sequelize = require('./util/database');
-const User = require('./models/user');
-const Expense = require('./models/expense');
 
 const dotenv = require('dotenv');
 dotenv.config();
+
+const sequelize = require('./util/database');
+const routes = require("./routes/routes");
+const User = require('./models/user');
+const Expense = require('./models/expense');
+
 
 
 app.use(express.json());
