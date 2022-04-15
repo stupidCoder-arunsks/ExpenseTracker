@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 
 function generateJwtToken(id) {
-    return jwt.sign(id, process.env.TOKEN_SECRET);
+    return jwt.sign({id}, process.env.TOKEN_SECRET);
 }
 
 exports.checkuser = async (req, res, next) => {

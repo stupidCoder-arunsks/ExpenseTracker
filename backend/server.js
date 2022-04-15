@@ -5,6 +5,8 @@ var cors = require('cors')
 const routes = require("./routes/routes");
 const sequelize = require('./util/database');
 const User = require('./models/user');
+const Expense = require('./models/expense');
+
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -12,6 +14,11 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 app.use(routes);
+
+
+User.hasMany(Expense);
+Expense.belongsTo(User);
+
 
 sequelize.sync(
     // { force: true }
