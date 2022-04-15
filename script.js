@@ -15,7 +15,10 @@ async function getLogInInfo(e) {
             "password": userPass
         });
 
+        // console.log('loginData >>> ' , res.data.token);
+
         if (res.status === 200) {
+            localStorage.setItem("authToken", res.data.token);
             location.href = "./homepage.html";
         } else if (res.status === 401) {
             alert("Invalid Credentials");
@@ -71,30 +74,42 @@ async function getSignUpInfo(e) {
 
     }
     catch (e) {
-        // alert(`${resMessage}`);
         alert("User already exists")
     }
 
-
 }
 
-function getExpenseDetails(event) {
+async function getExpenseDetails(event) {
 
     event.preventDefault();
 
-    console.log("inside getExpenseDetails >>> ");
+    const form = document.getElementById('form');
+    const formData = new FormData(form);
 
-    const description = document.getElementById('text').value;
-    const amount = document.getElementById('amount').value;
-    var e = document.getElementById('category');
-    // const category = e.options[e.selectedIndex].value;
+    const token = localStorage.getItem('authToken');
 
-    console.log('e index >> ', e.selectedIndex);
+    const data = {
+        "description": formData.get('description'),
+        "amount": formData.get('amount'),
+        "category": formData.get("category")
+    }
 
-    console.log('e option >> ', e.options);
+    // console.log('data addExpense function >> ' , data ,token)
 
-    // console.log('des amt catgry', description, amount, category);
+    try {
+        const res = await axios.post("http://localhost:3000/addExpense", { body: data }, { headers: { "Authorization": token } });
+
+        if (res.status === 200) {
+            alert('Expense added successfully...');
+        } else if (res.status === 500) {
+            alert('Error while adding the expense!!!');
+        }
+    } catch (err) {
+        alert("something went wrong expense was not added");
+    }
+
 }
+
 
 
 var x = document.getElementById("login");
