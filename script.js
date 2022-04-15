@@ -15,12 +15,22 @@ async function getLogInInfo(e) {
             "password": userPass
         });
 
+        if (res.status === 200) {
+            location.href = "./homepage.html";
+        } else if (res.status === 401) {
+            alert("Invalid Credentials");
+        } else if (res.status === 404) {
+            alert("User not found");
+        } else {
+            console.log(res);
+        }
+
 
     }
-    catch (e) {
+    catch (err) {
         // alert(`${resMessage}`);
-        // alert("User already exists")
-        console.log(e);
+        alert("Invalid Credentials")
+        // console.log(err);
     }
 
 
@@ -66,6 +76,24 @@ async function getSignUpInfo(e) {
     }
 
 
+}
+
+function getExpenseDetails(event) {
+
+    event.preventDefault();
+
+    console.log("inside getExpenseDetails >>> ");
+
+    const description = document.getElementById('text').value;
+    const amount = document.getElementById('amount').value;
+    var e = document.getElementById('category');
+    // const category = e.options[e.selectedIndex].value;
+
+    console.log('e index >> ', e.selectedIndex);
+
+    console.log('e option >> ', e.options);
+
+    // console.log('des amt catgry', description, amount, category);
 }
 
 
