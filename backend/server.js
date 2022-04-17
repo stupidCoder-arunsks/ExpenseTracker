@@ -10,7 +10,7 @@ const sequelize = require('./util/database');
 const routes = require("./routes/routes");
 const User = require('./models/user');
 const Expense = require('./models/expense');
-
+const Order = require('./models/order');
 
 
 app.use(express.json());
@@ -20,6 +20,9 @@ app.use(routes);
 
 User.hasMany(Expense);
 Expense.belongsTo(User);
+
+User.hasMany(Order);
+Order.belongsTo(User);
 
 
 sequelize.sync(

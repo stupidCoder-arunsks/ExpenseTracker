@@ -1,3 +1,7 @@
+var isDark = false;
+
+
+
 async function getLogInInfo(e) {
 
     console.log("In frontend login method >>> ");
@@ -109,6 +113,8 @@ async function getExpenseDetails(event) {
     }
 
 }
+
+
 
 var x = document.getElementById("login");
 var y = document.getElementById("signup");

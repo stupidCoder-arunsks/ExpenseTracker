@@ -6,9 +6,7 @@ const jwt = require('jsonwebtoken');
 exports.verifyAuth = async (req, res, next) => {
 
     console.log('Getting inside the verify auth function >>> ');
-    console.log('verifyAuth req body value >> ', `${req.body.body.description}`, req.body.body.amount, `${req.body.body.category}`);
-
-
+    // console.log('verifyAuth req body value >> ', `${req.body.body.description}`, req.body.body.amount, `${req.body.body.category}`);
 
     // console.log('req body addExpense backend >>> ' , req.body);
     // console.log('req headers addExpense backend >>> ' , req.headers);
