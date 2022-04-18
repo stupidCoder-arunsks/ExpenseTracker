@@ -31,7 +31,7 @@ exports.updateTransactioStatus = (req, res, next) => {
 
     console.log("inside update Transaction function >>> ");
 
-    console.log('req body of updateTranaction >> ' , req.body);
+    console.log('req body of updateTranaction >> ', req.body);
 
 
     try {
@@ -40,6 +40,7 @@ exports.updateTransactioStatus = (req, res, next) => {
 
         Order.findOne({ where: { orderId: orderId } }).then(order => {
             order.update({ paymentId: paymentId, status: "successfull" }).then(() => {
+                req.user.update({ isPremium: true });
                 return res.status(202).json({ success: true, message: "Transaction successfull" })
             }).catch(err => {
                 console.log(err);

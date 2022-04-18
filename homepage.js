@@ -2,8 +2,10 @@ var isDark = false;
 var isPremium = false;
 
 window.addEventListener('load', (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     console.log("page loaded....");
+    // console.log('isPremium : ', isPremium);
+
 
     if (isPremium) {
         document.getElementById('rzp-button').style.visibility = 'hidden';
@@ -42,8 +44,9 @@ async function getPremiumMemberShip() {
                 paymentId: response.razorpay_payment_id,
             }, { headers: { "Authorization": token } }).then(() => {
                 alert('You are a Premium User Now');
-                window.location.reload();
-            
+                // window.location.reload();
+                activatePremiumMemberShip();
+
                 // location.href = "./homepage.html";
                 // isPremium = true;
 
@@ -80,6 +83,13 @@ async function getPremiumMemberShip() {
 
 }
 
+function activatePremiumMemberShip() {
+
+    document.getElementById('rzp-button').style.visibility = 'hidden';
+    var isPremium = true;
+    // window.location.reload();
+}
+
 function toggleMode() {
 
     isDark = !isDark;
@@ -97,6 +107,40 @@ function toggleMode() {
         body.style.background = 'white';
         body.sytle.color = 'brown';
     }
+}
 
+function showExpenses() {
+    console.log('leaderBoard button clicked')
+    location.href = './leaderBoard.html';
+}
+
+async function getExpenseDetails(event) {
+
+    event.preventDefault();
+
+    const form = document.getElementById('form');
+    const formData = new FormData(form);
+
+    const token = localStorage.getItem('authToken');
+
+    const data = {
+        "description": formData.get('description'),
+        "amount": formData.get('amount'),
+        "category": formData.get("category")
+    }
+
+    // console.log('data addExpense function >> ' , data ,token)
+
+    try {
+        const res = await axios.post("http://localhost:3000/addExpense", { body: data }, { headers: { "Authorization": token } });
+
+        if (res.status === 200) {
+            alert('Expense added successfully...');
+        } else if (res.status === 500) {
+            alert('Error while adding the expense!!!');
+        }
+    } catch (err) {
+        alert("something went wrong expense was not added");
+    }
 
 }

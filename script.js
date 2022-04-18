@@ -83,38 +83,6 @@ async function getSignUpInfo(e) {
 
 }
 
-async function getExpenseDetails(event) {
-
-    event.preventDefault();
-
-    const form = document.getElementById('form');
-    const formData = new FormData(form);
-
-    const token = localStorage.getItem('authToken');
-
-    const data = {
-        "description": formData.get('description'),
-        "amount": formData.get('amount'),
-        "category": formData.get("category")
-    }
-
-    // console.log('data addExpense function >> ' , data ,token)
-
-    try {
-        const res = await axios.post("http://localhost:3000/addExpense", { body: data }, { headers: { "Authorization": token } });
-
-        if (res.status === 200) {
-            alert('Expense added successfully...');
-        } else if (res.status === 500) {
-            alert('Error while adding the expense!!!');
-        }
-    } catch (err) {
-        alert("something went wrong expense was not added");
-    }
-
-}
-
-
 
 var x = document.getElementById("login");
 var y = document.getElementById("signup");
