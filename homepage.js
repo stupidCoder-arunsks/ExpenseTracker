@@ -109,9 +109,29 @@ function toggleMode() {
     }
 }
 
-function showExpenses() {
+async function showExpenses() {
+    // checkPremium
     console.log('leaderBoard button clicked')
-    location.href = './leaderBoard.html';
+    try {
+        const token = localStorage.getItem('authToken');
+        const res = await axios.get("http://localhost:3000/checkPremium", { headers: { "Authorization": token } });
+        console.log("response  >>> ", res);
+        console.log("response data status >>> ", res.status);
+        if (res.status === 200) {
+            location.href = './leaderBoard.html';
+        }
+    }
+    catch (err) {
+        // console.log(err);
+        alert("This feature available only for premium members");
+    }
+
+    // console.log("res.status for checkPremium >>>  ", res.status);
+    // if (res.status !== 401) {
+
+    // } else {
+
+    // }
 }
 
 async function getExpenseDetails(event) {

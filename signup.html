@@ -27,7 +27,7 @@
             <form id="login" class="input-group" onsubmit="getLogInInfo(event)">
                 <input id="LogInEmail" type="text" class="input-field" placeholder="Email Id" required>
                 <input id="LogInPassword" type="text" class="input-field" placeholder="Enter password" required>
-                <input type="checkbox" class="check-box"><span>Remember Password</span>
+                <button id="reset-pass" type="button" class="remPassBtn" onclick="resetPassword()">Forget password ? </button>
                 <button id="login-btn" type="submit" class="submit-btn">Log in</button>
             </form>
             <form id="signup" class="input-group" onsubmit="getSignUpInfo(event)">

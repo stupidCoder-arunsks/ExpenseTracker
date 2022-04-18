@@ -53,12 +53,12 @@
     transition: .5s;
 }
 
-.social-icons{
+.social-icons {
     margin: 30px auto;
     text-align: center;
 }
 
-.social-icons img{
+.social-icons img {
     width: 30px;
     margin: 0 12px;
     box-shadow: 0 0 20px 0 #7f7f7f3d;
@@ -66,58 +66,81 @@
     border-radius: 50%;
 }
 
-.input-group{
+.input-group {
     left: 50px;
-    top:180px;
+    top: 180px;
     position: absolute;
     width: 280px;
     transition: .5s;
 }
 
-.input-field{
+.input-field {
     width: 250px;
     padding: 10px 0;
     margin: 10px 20px;
     border-left: 0;
-    border-top:0;
-    border-right:0;
+    border-top: 0;
+    border-right: 0;
     border-bottom: 1px solid #999;
     outline: none;
     background: transparent;
 }
 
-.submit-btn{
+.submit-btn {
     width: 85%;
     padding: 10px 30px;
     cursor: pointer;
     display: block;
     margin-top: 10px;
-    background: linear-gradient(to right,#ff105f,#ffad06);
+    background: linear-gradient(to right, #ff105f, #ffad06);
     border: 0;
     outline: none;
     border-radius: 30px;
 }
 
-.check-box{
+.check-box {
     width: 20px;
     height: 20px;
     margin: 20px 20px;
 }
 
-span{
+span {
     margin-top: 20px;
     color: #777;
     font-size: 16px;
     font-weight: bold;
     position: absolute;
-} 
+}
 
-#login{
+#login {
     /* display: none; */
     left: 50px;
 }
 
-#signup{
-        display: none;
-    left:50px;
-} 
+#signup {
+    display: none;
+    left: 50px;
+}
+
+#reset-pass {
+    color: black;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    height: 30px;
+    padding: 0 10px;
+    margin-left: 10px;
+    margin-top: 15px;
+
+}
+
+#reset-pass:hover{
+    color: red;
+}
+
+#login-btn {
+
+    margin-top: 20px;
+    margin-left: 20px;
+}

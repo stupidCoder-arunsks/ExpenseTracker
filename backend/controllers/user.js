@@ -1,6 +1,7 @@
 const User = require('../models/user');
 
 exports.getUserExpenses = async (req, res, next) => {
+    console.log("inside get user expenses...")
 
     try {
 
@@ -30,7 +31,7 @@ exports.getUserExpenses = async (req, res, next) => {
             }));
 
         // console.log('data outside >> ', data);
-        res.status(200).json({"exp" : data});
+        res.status(200).json({ "exp": data });
 
 
     }

@@ -83,6 +83,10 @@ async function getSignUpInfo(e) {
 
 }
 
+function resetPassword(){
+   location.href = './resetPassWord.html';
+}
+
 
 var x = document.getElementById("login");
 var y = document.getElementById("signup");
