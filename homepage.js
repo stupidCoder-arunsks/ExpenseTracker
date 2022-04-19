@@ -164,3 +164,8 @@ async function getExpenseDetails(event) {
     }
 
 }
+
+
+function expensePage(){
+    location.href = './userexpense.html';
+}
