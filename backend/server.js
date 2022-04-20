@@ -11,6 +11,7 @@ const routes = require("./routes/routes");
 const User = require('./models/user');
 const Expense = require('./models/expense');
 const Order = require('./models/order');
+const ExpenseFile = require('./models/expensefile');
 
 
 app.use(express.json());
@@ -24,6 +25,8 @@ Expense.belongsTo(User);
 User.hasMany(Order);
 Order.belongsTo(User);
 
+User.hasMany(ExpenseFile);
+ExpenseFile.belongsTo(User);
 
 sequelize.sync(
     // { force: true }

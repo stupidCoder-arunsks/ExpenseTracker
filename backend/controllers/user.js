@@ -39,10 +39,9 @@ exports.getUserExpenses = async (req, res, next) => {
         console.log('err >> ', err);
     }
 
+}
 
-
-
-
-    // res.status(200).json({ "users": users });
-    // console.log('all users >> ', users);
+exports.getParticularUserExpenses = async (req, res, next) => {
+    const expense = await req.user.getExpenses();
+    res.json({ "expenses": expense });
 }

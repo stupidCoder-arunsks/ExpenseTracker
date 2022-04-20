@@ -14,6 +14,9 @@ routes.post('/addExpense', verifyAuthController.verifyAuth, expenseController.ad
 routes.get('/purchase/premiummembership', verifyAuthController.verifyAuth, purchaseController.createOrder);
 routes.post('/purchase/updatetransactionstatus', verifyAuthController.verifyAuth, purchaseController.updateTransactioStatus);
 routes.get('/getUserExpenses', verifyAuthController.verifyAuth, verifyPremiumController.checkUserHasPremium, userController.getUserExpenses);
-routes.get('/checkPremium',verifyAuthController.verifyAuth, verifyPremiumController.checkUserHasPremium);
+routes.get('/checkPremium', verifyAuthController.verifyAuth, verifyPremiumController.checkUserHasPremium);
+routes.get('/download', verifyAuthController.verifyAuth, expenseController.downloadExpense);
+routes.get('/getexpensefile', verifyAuthController.verifyAuth, expenseController.getExpenseFilesFromDB);
+routes.get('/getParticularUserExpenses', verifyAuthController.verifyAuth, userController.getParticularUserExpenses);
 
 module.exports = routes;
