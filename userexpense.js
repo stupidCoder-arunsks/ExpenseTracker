@@ -1,6 +1,6 @@
 
 window.addEventListener('load', () => {
-    pagination(1);
+    pagination(1, 10);
     // getParticularUserExpenses();
     getExpenseFiles();
 })
@@ -10,6 +10,7 @@ async function getParticularUserExpenses(res) {
     // const token = localStorage.getItem('authToken');
     // const res = await axios.get('http://localhost:3000/getParticularUserExpenses', { headers: { "Authorization": token } });
     console.log("particular user res >>> ", res);
+
 
     const table = document.getElementById('table');
     table.innerHTML = `<tr class="header-row">
@@ -88,7 +89,10 @@ async function getParticularUserExpenses(res) {
 
 async function pagination(page) {
     const token = localStorage.getItem('authToken');
-    const res = await axios.get(`http://localhost:3000/getParticularUserExpenses?page=${page}`, { headers: { "Authorization": token } });
+    const limit = localStorage.getItem('pagelimit');
+    console.log('limit from local storage >> ', limit)
+    const res = await axios.get(`http://localhost:3000/getParticularUserExpenses?page=${page}&limit=${limit}`, { headers: { "Authorization": token } });
+    console.log('pagination res >>> ', res);
     getParticularUserExpenses(res);
 }
 
@@ -136,4 +140,14 @@ async function getExpenseFiles() {
     } catch (err) {
         console.log(err);
     }
-} 
+}
+
+
+function getDialogValue() {
+    const select = document.getElementById('page');
+    const limit = select.value;
+    // pagination(limit)
+    localStorage.setItem("pagelimit", limit)
+    pagination(1);
+
+}
