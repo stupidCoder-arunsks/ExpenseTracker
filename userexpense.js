@@ -1,21 +1,43 @@
 
 window.addEventListener('load', () => {
-    getParticularUserExpenses();
+    pagination(1);
+    // getParticularUserExpenses();
     getExpenseFiles();
 })
 
-async function getParticularUserExpenses() {
+async function getParticularUserExpenses(res) {
     console.log("front end inside getParticularUserExpense function ")
-    const token = localStorage.getItem('authToken');
-    const res = await axios.get('http://localhost:3000/getParticularUserExpenses', { headers: { "Authorization": token } });
+    // const token = localStorage.getItem('authToken');
+    // const res = await axios.get('http://localhost:3000/getParticularUserExpenses', { headers: { "Authorization": token } });
     console.log("particular user res >>> ", res);
-    const tableId = document.getElementById('table');
-    console.log("table >>> ", table);
+
+    const table = document.getElementById('table');
+    table.innerHTML = `<tr class="header-row">
+    <th class="header-item items">DATE</th>
+    <th class="header-item items">DESCRIPTION</th>
+    <th class="header-item items">CATEGORY</th>
+    <th class="header-item items">INCOME</th>
+    <th class="header-item items">EXPENSE</th>
+
+  </tr>`+ '';
+    // const headerRow = document.getElementsByClassName('header-row');
+    // console.log('header row 0th element >>> ', headerRow[0]);
+    // console.log('header row outer html >>> ' , headerRow.outerHTML);
+
+    // const tableFirstElementChild = table.firstElementChild;
+    // table.innerHTML = headerRow + '';
+    // console.log("table oth element >>> ", table);
+    // console.log("table child node >>> ", table.childNodes);
+    // console.log("table first child>>> ", table.firstChild);
+    // console.log("table first element child >>> ", table.firstElementChild);
+    // console.log("table first element child >>> ", table.firstElementChild.firstElementChild);
+
     let count = 1;
+    let tablerow = '';
 
     res.data.expenses.forEach((expense) => {
 
-        let tablerow = '';
+        tablerow = '';
 
         if (count % 2 == 0) {
             tablerow = `<tr class="table-rows" style="background-color: lightyellow;">
@@ -40,10 +62,34 @@ async function getParticularUserExpenses() {
 
     });
 
+    console.log('table after loop >> ', table);
+
+    // console.log('res data >> ', res.data)
+    const pagination = document.getElementById("pagination");
+    // console.log('pagination >> ', pagination)
+    // console.log('res pagination >>> ', res.data.pagination);
+    pagination.classList.add('pagination');
+    let paginationChild = "";
+
+    if (res.data.pagination.hasPreviousPage) {
+        paginationChild = `<span id="pagination" class="pagination" onclick=pagination(${res.data.pagination.previousPage})> ${res.data.pagination.previousPage} </span>`
+    }
+    if (res.data.pagination.hasNextPage) {
+        paginationChild += `<span id="pagination" class="pagination" onclick=pagination(${res.data.pagination.nextPage})> ${res.data.pagination.nextPage} </span>`
+    }
+
+    pagination.innerHTML = paginationChild;
+
     // const tableid = document.getElementById('table');
-    console.log("table >>> ", tableId);
+    // console.log("table >>> ", tableId);
 
 
+}
+
+async function pagination(page) {
+    const token = localStorage.getItem('authToken');
+    const res = await axios.get(`http://localhost:3000/getParticularUserExpenses?page=${page}`, { headers: { "Authorization": token } });
+    getParticularUserExpenses(res);
 }
 
 
@@ -84,7 +130,9 @@ async function getExpenseFiles() {
             <li class="files">  <a href=${file.url}>${file.name} </a>&emsp;<span>${file.createdAt}</span></li> <br>
             `
             list.innerHTML += tmp;
-        })
+        });
+
+
     } catch (err) {
         console.log(err);
     }

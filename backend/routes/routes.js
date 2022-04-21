@@ -17,6 +17,6 @@ routes.get('/getUserExpenses', verifyAuthController.verifyAuth, verifyPremiumCon
 routes.get('/checkPremium', verifyAuthController.verifyAuth, verifyPremiumController.checkUserHasPremium);
 routes.get('/download', verifyAuthController.verifyAuth, expenseController.downloadExpense);
 routes.get('/getexpensefile', verifyAuthController.verifyAuth, expenseController.getExpenseFilesFromDB);
-routes.get('/getParticularUserExpenses', verifyAuthController.verifyAuth, userController.getParticularUserExpenses);
+routes.get('/getParticularUserExpenses/', verifyAuthController.verifyAuth, userController.getParticularUserExpenses);
 
 module.exports = routes;

@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const { Op } = require("sequelize");
 
 exports.getUserExpenses = async (req, res, next) => {
     console.log("inside get user expenses...")
@@ -42,6 +43,31 @@ exports.getUserExpenses = async (req, res, next) => {
 }
 
 exports.getParticularUserExpenses = async (req, res, next) => {
-    const expense = await req.user.getExpenses();
-    res.json({ "expenses": expense });
+    console.log("Getting inside partiular user expenses...")
+
+    let page = !req.query.page ? 1 : parseInt(req.query.page);
+    let totalItems;
+
+    const expense = await req.user.getExpenses().then((expenses) => {
+        totalItems = expenses.length;
+        const start = page === 1 ? 0 : page - 1 + 10;
+        const end = page * 10;
+        const data = expenses.slice(start, end);
+        res.json({
+            "expenses": data, "pagination": {
+                currentPage: page,
+                nextPage: page + 1,
+                previousPage: page - 1,
+                hasPreviousPage: page > 1,
+                hasNextPage: end < totalItems,
+            }
+        });
+
+    }).catch(err => {
+        console.log(err);
+    });
+
+    // console.log('expense count >>> ', expense.length);
+
+    // res.json({ "expenses": expense });
 }
