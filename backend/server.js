@@ -1,5 +1,9 @@
 
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const helmet = require('helmet');
+const compression = require('compression');
 const app = express();
 var cors = require('cors')
 
@@ -12,8 +16,14 @@ const User = require('./models/user');
 const Expense = require('./models/expense');
 const Order = require('./models/order');
 const ExpenseFile = require('./models/expensefile');
+const morgan = require('morgan');
 
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'),
+    { flags: 'a' })
 
+app.use(helmet());
+app.use(compression());
+app.use(morgan('combined', { stream: accessLogStream }));
 app.use(express.json());
 app.use(cors());
 app.use(routes);
