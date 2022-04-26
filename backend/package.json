@@ -3,6 +3,9 @@
     "scripts": {
         "start": "nodemon server.js"
     },
+    "engines": {
+        "node":"17.8.0"
+    },
     "dependencies": {
         "aws-sdk": "^2.1117.0",
         "bcrypt": "^5.0.1",

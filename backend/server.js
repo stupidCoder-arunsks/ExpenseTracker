@@ -3,12 +3,16 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const helmet = require('helmet');
+const https = require('https');
 const compression = require('compression');
 const app = express();
 var cors = require('cors')
 
 const dotenv = require('dotenv');
 dotenv.config();
+
+// const privateKey = fs.readFileSync('server.key');
+// const certificate = fs.readFileSync('server.cert');
 
 const sequelize = require('./util/database');
 const routes = require("./routes/routes");
@@ -40,7 +44,11 @@ ExpenseFile.belongsTo(User);
 
 sequelize.sync(
     // { force: true }
-).then(() => {
+).then((result) => {
+    // https.createServer({key:privateKey , cert:certificate} , app)
+    // .listen(3000, () => {
+    //     console.log("Restarting the sever...");
+    // });
     app.listen(3000, () => {
         console.log("Restarting the sever...");
     });
